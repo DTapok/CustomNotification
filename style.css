@@ -1,0 +1,180 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'HelveticaNeueCyr', Arial, sans-serif;
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyrBlack';
+    src: url('fonts/HelveticaNeueCyr/helveticaneuecyr_black.otf') format('opentype');
+    font-weight: bold;
+    /* Жирный шрифт */
+}
+
+@font-face {
+    font-family: 'HelveticaNeueCyrRoman';
+    src: url('fonts/HelveticaNeueCyr/helveticaneuecyr_roman.otf') format('opentype');
+    font-weight: normal;
+    /* Обычный шрифт */
+}
+
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    gap: 20px;
+}
+
+.notification {
+    width: 400px;
+    height: 100px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 50%;
+    font-size: 30px;
+}
+
+.icon.success {
+    background-color: green;
+}
+
+.icon.error {
+    background-color: red;
+}
+
+.content {
+    width: 85%;
+    cursor: default;
+}
+
+.content h2 {
+    font-weight: 550;
+    line-height: 22.24px;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+.content p {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 16.68px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: rgba(123, 124, 125, 1);
+}
+
+.progress-container {
+    width: 100%;
+    height: 6px;
+    background-color: #ccc;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    border-radius: 3px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: rgba(75, 78, 81, 1);
+    border-radius: 3px;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.request__btn {
+    width: 200px;
+    height: 50px;
+    background-color: #fff;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    border: none;
+    font-weight: 550;
+}
+
+.request__btn:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.request__btn:active {
+    background-color: #007bff;
+    color: white;
+    transform: scale(0.95);
+}
+
+/* Анимация появления уведомления */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+        /* Начальное положение вверху */
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        /* Конечное положение */
+    }
+}
+
+/* Анимация исчезновения уведомления */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+        /* Начальное положение */
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+        /* Конечное положение вверху */
+    }
+}
+
+.notification {
+    position: relative;
+    animation: fadeIn 0.3s ease forwards;
+    /* Плавное появление */
+    opacity: 0;
+    /* Начальная прозрачность */
+    transform: translateY(-20px);
+    /* Начальное положение вверху */
+}
+
+.notification.show {
+    opacity: 1;
+    animation-name: fadeIn;
+}
+
+.notification.hide {
+    animation-name: fadeOut;
+}
